@@ -235,7 +235,7 @@ class Usercontroller {
           message: "  Successfully user deleted 🥂🍻",
         });
       } catch (err) {
-        console.log(err);
+        console.log(err); 
       }
     };
   }
