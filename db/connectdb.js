@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const dbconnect = ()=>{
-    return mongoose.connect(process.env.LOCAL_URL)
+    return mongoose.connect(process.env.LIVE_URL)
     .then(()=>{
         console.log("data base connected")
     })
