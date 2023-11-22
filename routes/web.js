@@ -19,4 +19,5 @@ router.get('/getsingleuser/:id'),Usercontroller.getsingleuser
 
 router.get('/getcategory', CategoryController.getcategory)
 router.post('/insertcategory', CategoryController.insertcategory)
+router.delete('/deletecategory/:id',CategoryController.deletecategory)
 module.exports = router

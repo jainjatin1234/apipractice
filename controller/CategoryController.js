@@ -25,7 +25,7 @@ class CategoryController {
         },
       });
       await result.save();
-      console.log(result)
+      console.log(result);
       res.status(201).json({
         status: "success",
         message: "Registration Successfully 😃🍻",
@@ -35,19 +35,36 @@ class CategoryController {
     }
   };
 
-  static getcategory = async(req,res)=>{
+  static getcategory = async (req, res) => {
     try {
-      const data = await CategoryModel.find()
-      console.log(data)
+      const data = await CategoryModel.find();
+      console.log(data);
       res.status(200).json({
-        success:true,
+        success: true,
         data,
-      })
-      
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+
+  static deletecategory = async (req, res) => {
+    try {
+      const category = await CategoryModel.findById(req.params.id);
+      //code of deleting the image
+      const image_id = category.image.public_id;
+      // console.log(image_id)
+      await cloudinary.uploader.destroy(image_id);
+
+      await CategoryModel.findByIdAndDelete(req.params.id);
+      res.status(200).json({
+        status: "deleted successfully",
+        message: "  Successfully user deleted 🥂🍻",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 }
 
 module.exports = CategoryController;
