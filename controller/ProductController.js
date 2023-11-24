@@ -59,7 +59,7 @@ class Productcontroller {
       // take imageid
       const image_id = product.image.public_id;
       // delete image
-      await cloudinary.uploader.upload(image_id);
+      await cloudinary.uploader.destroy(image_id);
 
       // delete product
       await productModel.findByIdAndDelete(req.params.id);
