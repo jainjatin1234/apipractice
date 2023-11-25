@@ -1,9 +1,10 @@
 const express = require('express')
 const app = express()
 const web = require('./routes/web')
+const connnectdb = require('./db/connectdb')
+
 const fileupload = require('express-fileupload')
 const cookie = require('cookie-parser')
-const connnectdb = require('./db/connectdb')
 const dotenv = require('dotenv')
 dotenv.config(
     {
