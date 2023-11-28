@@ -51,7 +51,7 @@ class ProductControllerr {
 
   static deleteproduct = async (req, res) => {
     try {
-      const category = await ProductModel.findById(req.params.id);
+      const product = await ProductModel.findById(req.params.id);
       //code of deleting the image
       const image_id = product.image.public_id;
       // console.log(image_id)
