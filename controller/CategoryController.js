@@ -23,6 +23,7 @@ class CategoryController {
           public_id: myimage.public_id,
           url: myimage.secure_url,
         },
+        products:req.body.name,
       });
       await result.save();
       console.log(result);
