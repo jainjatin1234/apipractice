@@ -9,7 +9,7 @@ const productschema = new mongoose.Schema({
         public_id:{
             type:String,
         },
-        image_url:{
+        url:{
             type:String,
         },
     },
