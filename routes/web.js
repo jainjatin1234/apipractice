@@ -1,6 +1,6 @@
 const express = require('express')
 const CategoryController = require('../controller/CategoryController')
-const Productcontroller = require('../controller/ProductController')
+const ProductControllerr = require('../controller/ProductControllerr')
 const Usercontroller = require('../controller/Usercontroller')
 // const checkauth = require('../middleware/auth')
 const router = express.Router()
@@ -22,8 +22,9 @@ router.get('/getcategory', CategoryController.getcategory)
 router.post('/insertcategory', CategoryController.insertcategory)
 router.delete('/deletecategory/:id',CategoryController.deletecategory)
 
-router.get('/getproduct',Productcontroller.getproduct)
-router.post('/insertproduct',Productcontroller.insertproduct)
-router.delete('/deleteproduct/:id',Productcontroller.deleteproduct)
-router.get('/getproductdetails/:id',Productcontroller.getproductdetails)
+
+router.get('/getproduct', ProductControllerr.getproduct)
+router.post('/insertproduct', ProductControllerr.insertproduct)
+router.delete('/deleteproduct/:id',ProductControllerr.deleteproduct)
+
 module.exports = router
