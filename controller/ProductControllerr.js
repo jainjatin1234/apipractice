@@ -23,6 +23,7 @@ class ProductControllerr {
           public_id: myimage.public_id,
           url: myimage.secure_url,
         },
+        price:req.body.price,
       });
       await result.save();
       console.log(result);
