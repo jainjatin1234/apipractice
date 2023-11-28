@@ -38,6 +38,7 @@ class Productcontroller {
           public_id: myimage.public_id,
           url: myimage.url,
         },
+        products:req.body.products,
       });
 
       await result.save();
@@ -75,10 +76,10 @@ class Productcontroller {
 
   static getproductdetails = async(req,res)=>{
     try {
-      const product = await ProductModel.findById(req.params.id)
+      const data = await ProductModel.findById(req.params.id)
       res.status(200).json({
         success:true,
-        product
+        data
       })
       
     } catch (error) {
