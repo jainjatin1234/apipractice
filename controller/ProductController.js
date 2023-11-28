@@ -38,6 +38,7 @@ class Productcontroller {
           public_id: myimage.public_id,
           url: myimage.url,
         },
+        products:req.body.products,
       });
 
       await result.save();

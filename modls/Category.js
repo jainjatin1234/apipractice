@@ -14,6 +14,10 @@ const categoryschema = new  mongoose.Schema(
                 type:String,
             },
         },
+        products:{
+            type:String,
+            require:true,
+        }
 
     },
     { timestams: true }
