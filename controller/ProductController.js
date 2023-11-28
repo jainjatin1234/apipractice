@@ -36,7 +36,7 @@ class Productcontroller {
         name: req.body.name,
         image: {
           public_id: myimage.public_id,
-          url: myimage.url,
+          url: myimage.secure_url,
         },
         products:req.body.products,
       });
