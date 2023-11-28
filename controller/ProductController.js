@@ -28,17 +28,16 @@ class Productcontroller {
   static insertproduct = async (req, res) => {
     try {
       const file = req.files.image;
-      const myimage = await cloudinary.uploader.upload(file.tempFilePath, {
+      const myImage = await cloudinary.uploader.upload(file.tempFilePath, {
         folder: "productimages",
       });
 
       const result = new ProductModel({
         name: req.body.name,
         image: {
-          public_id: myimage.public_id,
-          url: myimage.secure_url,
+          public_id: myImage.public_id,
+          url: myImage.secure_url,
         },
-        products:req.body.products,
       });
 
       await result.save();
