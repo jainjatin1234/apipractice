@@ -68,7 +68,7 @@ class ProductControllerr {
   };
 
 
-  static getproductdetails = async(req,res){
+  static getproductdetails = async(req,res)=>{
     try{
 
       const data = await ProductModel.findById(req.params.id)
