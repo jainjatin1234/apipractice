@@ -26,6 +26,6 @@ router.delete('/deletecategory/:id',CategoryController.deletecategory)
 router.get('/getproduct', ProductControllerr.getproduct)
 router.post('/insertproduct', ProductControllerr.insertproduct)
 router.delete('/deleteproduct/:id',ProductControllerr.deleteproduct)
-router.get('/getprodductdetails/:id',ProductControllerr.getproductdetails)
+router.get('/getproductdetails/:id',ProductControllerr.getproductdetails)
 
 module.exports = router
