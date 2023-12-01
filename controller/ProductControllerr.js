@@ -24,6 +24,7 @@ class ProductControllerr {
           url: myimage.secure_url,
         },
         price:req.body.price,
+        stock:req.body.stock,
       });
       await result.save();
       console.log(result);
