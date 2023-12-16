@@ -23,8 +23,8 @@ class ProductControllerr {
           public_id: myimage.public_id,
           url: myimage.secure_url,
         },
-        price:req.body.price,
-        stock:req.body.stock,
+        price: req.body.price,
+        stock: req.body.stock,
       });
       await result.save();
       console.log(result);
@@ -68,20 +68,65 @@ class ProductControllerr {
     }
   };
 
-
-  static getproductdetails = async(req,res)=>{
-    try{
-
-      const data = await ProductModel.findById(req.params.id)
+  static getproductdetails = async (req, res) => {
+    try {
+      const data = await ProductModel.findById(req.params.id);
       res.status(200).json({
-        success:true,
+        success: true,
         data,
-      })
-
-    }catch(err){
-      console.log(err)
+      });
+    } catch (err) {
+      console.log(err);
     }
-  } 
+  };
+
+  static productupdate = async (req, res) => {
+    try {
+      // console.log(req.files.image)
+      if (req.files) {
+        //deleting the image
+        const product = await ProductModel.findById(req.params.id);
+        const imageid = product.image.public_id;
+
+        // console.log(imageid)
+
+        await cloudinary.uploader.destroy(imageid);
+
+        //second update,image
+
+        const imagefile = req.files.image;
+        //image upload code
+        const myImage = await cloudinary.uploader.upload(
+          imagefile.tempFilePath,
+          {
+            folder: "productimage",
+          }
+        );
+
+        var data = {
+          name: req.body.name,
+          image: {
+            public_id: myImage.public_id,
+            url: myImage.secure_url,
+          },
+          stock: req.body.stock,
+        };
+      } else {
+        var data = {
+          name: req.body.name,
+          stock: req.body.stock,
+        };
+      }
+      const id = req.params.id;
+      await ProductModel.findByIdAndUpdate(id, data);
+      res.status(200).json({
+        success: true,
+        data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 module.exports = ProductControllerr;
