@@ -29,4 +29,6 @@ router.delete('/deleteproduct/:id',ProductControllerr.deleteproduct)
 router.get('/getproductdetails/:id',ProductControllerr.getproductdetails)
 router.patch('/updateproduct/:id',ProductControllerr.productupdate)
 
+
+
 module.exports = router
