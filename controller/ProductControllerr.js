@@ -109,6 +109,7 @@ class ProductControllerr {
             public_id: myImage.public_id,
             url: myImage.secure_url,
           },
+          price:req.body.price,
           stock: req.body.stock,
         };
       } else {
