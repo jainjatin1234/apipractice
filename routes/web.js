@@ -2,11 +2,11 @@ const express = require('express')
 const CategoryController = require('../controller/CategoryController')
 const ProductControllerr = require('../controller/ProductControllerr')
 const Usercontroller = require('../controller/Usercontroller')
-// const checkauth = require('../middleware/auth')
+const checkauth = require('../middleware/auth')
 const router = express.Router()
 
 
-router.get('/getuserdetails',Usercontroller.getuserdetails)
+router.get('/me',checkauth,Usercontroller.getuserdetails)
 router.get('/getuser',Usercontroller.getuser)
 router.post('/userinsert',Usercontroller.userinsert)
 router.post('/verifylogin',Usercontroller.verifylogin)

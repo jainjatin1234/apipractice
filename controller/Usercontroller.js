@@ -27,8 +27,9 @@ class Usercontroller {
 
   static getuserdetails = async (req, res) => {
     try {
-      const {id,name,email} = req.admin
-      const user = await UserModel.findById(id);
+      // const {id,name,email} = req.admin
+      // const user = await UserModel.findById(id);
+      const user = await UserModel.findById(req.admin.id);
       // console.log(users)
       res.status(201).json({
         status: "success",
