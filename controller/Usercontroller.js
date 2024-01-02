@@ -161,10 +161,10 @@ class Usercontroller {
 
   static updatepassword = async (req, res) => {
     try {
-        const { id } = req.admin
+        // const { id } = req.admin
         const { old_password, new_password, cpassword } = req.body;
         if (old_password && new_password && cpassword) {
-            const user = await UserModel.findById(id);
+            const user = await UserModel.findById(req.admin.id);
             const ismatch = await bcrypt.compare(old_password, user.password);
             if (!ismatch) {
                 res
@@ -178,7 +178,7 @@ class Usercontroller {
 
                 } else {
                     const newHashpassword = await bcrypt.hash(new_password, 10);
-                    await UserModel.findByIdAndUpdate(id, {
+                    await UserModel.findByIdAndUpdate(req.admin.id, {
                         $set: { password: newHashpassword },
                     });
                     res.status(201).json({
@@ -200,6 +200,61 @@ class Usercontroller {
       }
 
     }
+
+    static updateprofile = async(req,res)=>{
+      const {id} = req.params
+      const {name,email,age} = req.body
+      try{
+          
+          if (req.files) {
+  
+              //deleting the image
+                const user = await usermodel.findById(req.admin.id)
+                const imageid = user.image.public_id
+    
+                // console.log(imageid)
+    
+                await cloudinary.uploader.destroy(imageid)
+    
+    
+    
+                //second update,age
+    
+                const imagefile = req.files.image
+                //image upload code
+                const myImage = await cloudinary.uploader.upload(imagefile.tempFilePath, {   
+                    folder: "profileimageap2"
+                })
+    
+    
+                var data = {
+                  name:name,
+                  email:email,
+                    image: {
+                        public_id: myImage.public_id,
+                        url: myImage.secure_url
+                    }
+                }
+    
+            } else {
+                var data = {
+                   
+                name:name,
+                email:email,
+    
+                }
+            }
+           const result =  await usermodel.findByIdAndUpdate(req.admin.id, data)
+          res.status(201).json({
+            success:true,
+            message:'profile updated successfully',
+            result
+          })
+      }catch(err){
+          console.log(err)
+          // res.send(400).json({error:err.message})
+      }
+  }
 
 
 
