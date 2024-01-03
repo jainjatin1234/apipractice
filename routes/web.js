@@ -13,7 +13,7 @@ router.post('/verifylogin',Usercontroller.verifylogin)
 router.get('/logout',Usercontroller.logout)
 router.post('/updateprofile',checkauth,Usercontroller.updateprofile)
 
-router.post('/updatepassword',Usercontroller.updatepassword)
+router.post('/updatepassword',checkauth,Usercontroller.updatepassword)
 
 router.delete('/deleteuser'),Usercontroller.DeleteUser
 router.get('/getsingleuser/:id'),Usercontroller.getsingleuser
