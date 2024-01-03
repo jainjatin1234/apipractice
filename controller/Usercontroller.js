@@ -246,7 +246,7 @@ class Usercontroller {
     
                 }
             }
-           const result =  await userModel.findByIdAndUpdate(req.admin.id, data)
+           const result =  await UserModel.findByIdAndUpdate(req.admin.id, data)
           res.status(201).json({
             success:true,
             message:'profile updated successfully',
