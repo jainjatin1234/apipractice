@@ -1,7 +1,7 @@
 const UserModel = require("../modls/User");
 const cloudinary = require("cloudinary").v2;
 const bcrypt = require("bcrypt");
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 //cloudinary setup
 cloudinary.config({
@@ -201,15 +201,17 @@ class Usercontroller {
 
     }
 
+
+
     static updateprofile = async(req,res)=>{
-      const {id} = req.params
-      const {name,email,age} = req.body
+      // const {id} = req.params
+      const {name,email} = req.body
       try{
           
           if (req.files) {
   
               //deleting the image
-                const user = await usermodel.findById(req.admin.id)
+                const user = await userModel.findById(req.admin.id)
                 const imageid = user.image.public_id
     
                 // console.log(imageid)
@@ -244,7 +246,7 @@ class Usercontroller {
     
                 }
             }
-           const result =  await usermodel.findByIdAndUpdate(req.admin.id, data)
+           const result =  await userModel.findByIdAndUpdate(req.admin.id, data)
           res.status(201).json({
             success:true,
             message:'profile updated successfully',
