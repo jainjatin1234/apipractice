@@ -11,7 +11,7 @@ router.get('/getuser',Usercontroller.getuser)
 router.post('/userinsert',Usercontroller.userinsert)
 router.post('/verifylogin',Usercontroller.verifylogin)
 router.get('/logout',Usercontroller.logout)
-router.post('/updateprofile',checkauth,Usercontroller.updateprofile)
+router.patch('/updateprofile',checkauth,Usercontroller.updateprofile)
 
 router.post('/updatepassword',Usercontroller.updatepassword)
 
