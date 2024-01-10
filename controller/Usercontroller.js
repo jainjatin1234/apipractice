@@ -203,60 +203,53 @@ class Usercontroller {
 
 
 
-    static updateprofile = async(req,res)=>{
-      // const {id} = req.params
-      const {name,email} = req.body
-      try{
-          
-          if (req.files) {
+    static updateprofile = async (req, res) => {
+      try {
+        // console.log(req.files.image)
+        if (req.files) {
+          //deleting the image
+          const user = await UserModel.findById(req.admin.id);
+          const imageid = user.image.public_id;
   
-              //deleting the image
-                const user = await userModel.findById(req.admin.id)
-                const imageid = user.image.public_id
-    
-                // console.log(imageid)
-    
-                await cloudinary.uploader.destroy(imageid)
-    
-    
-    
-                //second update,age
-    
-                const imagefile = req.files.image
-                //image upload code
-                const myImage = await cloudinary.uploader.upload(imagefile.tempFilePath, {   
-                    folder: "profileimageap2"
-                })
-    
-    
-                var data = {
-                  name:name,
-                  email:email,
-                    image: {
-                        public_id: myImage.public_id,
-                        url: myImage.secure_url
-                    }
-                }
-    
-            } else {
-                var data = {
-                   
-                name:name,
-                email:email,
-    
-                }
+          // console.log(imageid)
+  
+          await cloudinary.uploader.destroy(imageid);
+  
+          //second update,image
+  
+          const imagefile = req.files.image;
+          //image upload code
+          const myImage = await cloudinary.uploader.upload(
+            imagefile.tempFilePath,
+            {
+              folder: "userimage",
             }
-           const result =  await UserModel.findByIdAndUpdate(req.admin.id, data)
-          res.status(201).json({
-            success:true,
-            message:'profile updated successfully',
-            result
-          })
-      }catch(err){
-          console.log(err)
-          // res.send(400).json({error:err.message})
+          );
+  
+          var data = {
+            name: req.body.name,
+            email:req.body.email,
+            image: {
+              public_id: myImage.public_id,
+              url: myImage.secure_url,
+            },
+         
+          };
+        } else {
+          var data = {
+            name: req.body.name,
+            email: req.body.email,
+          };
+        }
+        await UserModel.findByIdAndUpdate(req.admin,id, data);
+        res.status(200).json({
+          success: true,
+          data,
+        });
+      } catch (error) {
+        console.log(error);
       }
-  }
+    };
 
 
 
