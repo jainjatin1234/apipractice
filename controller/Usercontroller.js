@@ -222,7 +222,7 @@ class Usercontroller {
           const myImage = await cloudinary.uploader.upload(
             imagefile.tempFilePath,
             {
-              folder: "userimage",
+              folder: "profileimageapi",
             }
           );
   
