@@ -241,7 +241,7 @@ class Usercontroller {
             email: req.body.email,
           };
         }
-        await UserModel.findByIdAndUpdate(req.admin,id, data);
+        await UserModel.findByIdAndUpdate(req.admin.id, data);
         res.status(200).json({
           success: true,
           data,
