@@ -1,5 +1,6 @@
 const express = require('express')
 const CategoryController = require('../controller/CategoryController')
+const PaymentController = require('../controller/PaymentController')
 const ProductControllerr = require('../controller/ProductControllerr')
 const Usercontroller = require('../controller/Usercontroller')
 const checkauth = require('../middleware/auth')
@@ -29,6 +30,10 @@ router.post('/insertproduct', ProductControllerr.insertproduct)
 router.delete('/deleteproduct/:id',ProductControllerr.deleteproduct)
 router.get('/getproductdetails/:id',ProductControllerr.getproductdetails)
 router.patch('/updateproduct/:id',ProductControllerr.productupdate)
+
+//payment controller
+router.post('/payment/process', checkauth, PaymentController.processpayment)
+router.get('/stripeapikey', checkauth, PaymentController.sendStripApiKey)
 
 
 
