@@ -33,7 +33,7 @@ router.patch('/updateproduct/:id',ProductControllerr.productupdate)
 
 //payment controller
 router.post('/payment/process', checkauth, PaymentController.processpayment)
-router.get('/stripeapikey', checkauth, PaymentController.sendStripApiKey)
+router.get('/StripeApiKey', checkauth, PaymentController.sendStripApiKey)
 
 
 
