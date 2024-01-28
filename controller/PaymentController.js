@@ -1,4 +1,4 @@
-require('dotenv').config({path: './.env'})
+dotenv.config( {path:'.env'   })
 //const key = process.env.STRIPE_SECRET_KEY
 //console.log(key)
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
@@ -15,7 +15,7 @@ class PaymentController {
             }
         })
         console.log(mypayment)
-        res.status(200).json({Success:true,client_secret: mypayment.client_secret})
+        res.status(200).json({Success:true, client_secret: mypayment.client_secret})
     }
 
     static sendStripApiKey = async (req,res) =>{
