@@ -1,4 +1,4 @@
-dotenv.config( {path:'./.env'   })
+require('dotenv').config({ path: './.env' })
 //const key = process.env.STRIPE_SECRET_KEY
 //console.log(key)
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
