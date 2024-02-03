@@ -4,6 +4,7 @@ class OrderController{
 
     static createorder = async(req,res)=>{
         try{
+            console.log(req.admin)
             const {shippingInfo, orderItems, paymentInfo, itemsPrice, taxPrice,totalPrice,shippingPrice} = req.body
             const order = await OrderModel.create({
                 shippingInfo,
@@ -14,7 +15,7 @@ class OrderController{
                 shippingPrice,
                 totalPrice,
                 paidAt: Date.now(),
-                user:req.user._id
+                user:req.admin._id
             })
 
             res.status(200).json({status: "success", message: "order added succesfully", order})
