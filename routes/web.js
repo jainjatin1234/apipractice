@@ -1,5 +1,6 @@
 const express = require('express')
 const CategoryController = require('../controller/CategoryController')
+const OrderController = require('../controller/OrderController')
 const PaymentController = require('../controller/PaymentController')
 const ProductControllerr = require('../controller/ProductControllerr')
 const Usercontroller = require('../controller/Usercontroller')
@@ -35,6 +36,15 @@ router.patch('/updateproduct/:id',ProductControllerr.productupdate)
 //PaymentController
 router.post('/payment/process', checkauth, PaymentController.processpayment)
 router.get('/stripeapiKey', PaymentController.sendStripApiKey)
+
+
+//ordercontroller
+router.post('/order/create',OrderController.createorder)
+router.post('/order/getsingleuser/:id',OrderController.getsingleorder)
+router.get('/order/myorder',OrderController.myorder)
+router.get('/order/getallorders',OrderController.getallorders)
+router.get('/order/deleteorder/:id',OrderController.deleteorder)
+
 
 
 
