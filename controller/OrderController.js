@@ -4,7 +4,7 @@ class OrderController{
 
     static createorder = async(req,res)=>{
         try{
-            console.log(req.admin)
+            console.log(req.body)
             const {shippingInfo, orderItems, paymentInfo, itemsPrice, taxPrice,totalPrice,shippingPrice} = req.body
             const order = await OrderModel.create({
                 shippingInfo,
