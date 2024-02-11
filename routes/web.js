@@ -39,7 +39,7 @@ router.get('/stripeapiKey', PaymentController.sendStripApiKey)
 
 
 //ordercontroller
-router.post('/order/create',OrderController.createorder)
+router.post('/createorder',checkauth,OrderController.createorder)
 router.post('/order/getsingleuser/:id',OrderController.getsingleorder)
 router.get('/order/myorder',OrderController.myorder)
 router.get('/order/getallorders',OrderController.getallorders)
