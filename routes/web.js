@@ -30,7 +30,9 @@ router.get('/getproduct', ProductControllerr.getproduct)
 router.post('/insertproduct', ProductControllerr.insertproduct)
 router.delete('/deleteproduct/:id',ProductControllerr.deleteproduct)
 router.get('/getproductdetails/:id',ProductControllerr.getproductdetails)
+router.get('/getdetails/:id',ProductControllerr.getdetails)
 router.patch('/updateproduct/:id',ProductControllerr.productupdate)
+
 
 //payment controller
 //PaymentController

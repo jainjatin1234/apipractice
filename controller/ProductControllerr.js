@@ -80,6 +80,19 @@ class ProductControllerr {
     }
   };
 
+  static getdetails = async (req,res)=>{
+    try{
+      const details = await ProductModel.findById(req.params.id);
+      res.status(200).json({
+        success: true,
+        details,
+      });
+
+    }catch(err){
+      console.log(err)
+    }
+  }
+
   static productupdate = async (req, res) => {
     try {
       // console.log(req.files.image)
