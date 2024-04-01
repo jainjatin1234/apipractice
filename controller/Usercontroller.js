@@ -162,22 +162,22 @@ class Usercontroller {
   static updatepassword = async (req, res) => {
     try {
         // const { id } = req.admin
-        const { old_password, new_password, cpassword } = req.body;
-        if (old_password && new_password && cpassword) {
+        const { oldpassword, newpassword, confirmpassword } = req.body;
+        if (oldpassword && newpassword && confirmpassword) {
             const user = await UserModel.findById(req.admin.id);
-            const ismatch = await bcrypt.compare(old_password, user.password);
+            const ismatch = await bcrypt.compare(oldpassword, user.password);
             if (!ismatch) {
                 res
                     .status(401)
                     .json({ status: "failed", message: "old password is incorrect" });
             } else {
-                if (new_password !== cpassword) {
+                if (newpassword !== confirmpassword) {
                     res
                         .status(401)
                         .json({ status: "failed", message: "  Password and confirm password do not match" });
 
                 } else {
-                    const newHashpassword = await bcrypt.hash(new_password, 10);
+                    const newHashpassword = await bcrypt.hash(newpassword, 10);
                     await UserModel.findByIdAndUpdate(req.admin.id, {
                         $set: { password: newHashpassword },
                     });
